@@ -8,7 +8,7 @@ from aiogram.fsm.state import State, StatesGroup, default_state
 from aiogram.types import Message, CallbackQuery, InlineKeyboardButton, InlineKeyboardMarkup, PhotoSize
 import redis.asyncio as Redis
 
-from Config import Config, load_config
+from Config.config import Config, load_config
 
 redis = Redis(host='localhost', db=9)
 storage : RedisStorage = RedisStorage(redis=redis)
