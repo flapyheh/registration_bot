@@ -3,11 +3,23 @@ from environs import Env
 from aiogram import Bot, Dispatcher, F
 from aiogram.filters import Command, StateFilter, CommandStart
 from aiogram.fsm.context import FSMContext
-from aiogram.fsm.storage.memory import MemoryStorage
+from aiogram.fsm.storage.redis import RedisStorage
 from aiogram.fsm.state import State, StatesGroup, default_state
 from aiogram.types import Message, CallbackQuery, InlineKeyboardButton, InlineKeyboardMarkup, PhotoSize
+import redis.asyncio as Redis
 
-storage = MemoryStorage()
+from Config import Config, load_config
+
+redis = Redis(host='localhost', db=9)
+storage : RedisStorage = RedisStorage(redis=redis)
+
+
+config: Config = load_config()
+BOT_TOKEN: str = config.tg_bot.token
+
+# Создаем объекты бота и диспетчера
+bot = Bot(BOT_TOKEN)
+dp = Dispatcher()
 
 env = Env()
 env.read_env()
