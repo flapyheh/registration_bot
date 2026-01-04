@@ -10,7 +10,7 @@ import redis
 
 from Config.config import Config, load_config
 
-redis = redis.asyncio.Redis(host='localhost', db=9)
+redis = redis.Redis(host='localhost', db=9)
 storage : RedisStorage = RedisStorage(redis=redis)
 
 
