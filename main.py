@@ -6,11 +6,11 @@ from aiogram.fsm.context import FSMContext
 from aiogram.fsm.storage.redis import RedisStorage
 from aiogram.fsm.state import State, StatesGroup, default_state
 from aiogram.types import Message, CallbackQuery, InlineKeyboardButton, InlineKeyboardMarkup, PhotoSize
-import redis.asyncio as Redis
+import redis
 
 from Config.config import Config, load_config
 
-redis = Redis(host='localhost', db=9)
+redis = redis.asyncio.Redis(host='localhost', db=9)
 storage : RedisStorage = RedisStorage(redis=redis)
 
 
